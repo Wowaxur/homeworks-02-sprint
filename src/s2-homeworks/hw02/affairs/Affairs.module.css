@@ -3,7 +3,9 @@
     gap: 24px;
     margin-bottom: 32px;
 }
-
+.hw2wrapper{
+    padding-left: 40px;
+}
 .all {
     --color: #06c;
 }
