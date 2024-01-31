@@ -7,6 +7,8 @@ import React, {
 import s from './SuperEditableSpan.module.css'
 import SuperInputText from '../../../hw04/common/c1-SuperInputText/SuperInputText'
 import editIcon from './editIcon.svg'
+import {Simulate} from "react-dom/test-utils";
+import keyUp = Simulate.keyUp;
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
@@ -42,19 +44,19 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
 
     const onEnterCallback = () => {
         // выключить editMode при нажатии Enter // делают студенты
-
+        setEditMode(false)
         onEnter?.()
     }
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
         // выключить editMode при нажатии за пределами инпута // делают студенты
-
+        setEditMode(false)
         onBlur?.(e)
     }
     const onDoubleClickCallBack = (
         e: React.MouseEvent<HTMLSpanElement, MouseEvent>
     ) => {
         // включить editMode при двойном клике // делают студенты
-
+        setEditMode(true)
         onDoubleClick?.(e)
     }
 
@@ -85,7 +87,7 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
                     >
                         {/*если нет захардкодженного текста для спана, то значение инпута*/}
 
-                        {children || restProps.value || defaultText}
+                        {children || restProps.value || <span className={s.defaultText}>{defaultText}</span>}
                     </span>
                 </div>
             )}
