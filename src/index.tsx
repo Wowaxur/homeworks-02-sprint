@@ -7,7 +7,6 @@ import store from './s2-homeworks/hw10/bll/store'
 import {Provider} from 'react-redux'
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <React.StrictMode>

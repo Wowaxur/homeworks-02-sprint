@@ -1,20 +1,29 @@
-import {UserType} from '../HW8'
+import { UserType } from '../HW8';
 
 type ActionType =
     | { type: 'sort'; payload: 'up' | 'down' }
-    | { type: 'check'; payload: number }
+    | { type: 'check'; payload: number };
 
-export const homeWorkReducer = (state: any, action: any): any => { // need to fix any
+export const homeWorkReducer = (state: UserType[], action: ActionType): UserType[] => {
     switch (action.type) {
-        case 'sort': { // by name
-
-            return state // need to fix
+        case 'sort': {
+            // Create a new array for sorting to avoid mutating the original state
+            const newState = [...state].sort((a, b) => {
+                if (a.name < b.name) {
+                    return action.payload === 'up' ? -1 : 1;
+                }
+                if (a.name > b.name) {
+                    return action.payload === 'up' ? 1 : -1;
+                }
+                return 0;
+            });
+            return newState;
         }
         case 'check': {
-
-            return state // need to fix
+            // Filter users who are older than the given age
+            return state.filter(user => user.age >= action.payload);
         }
         default:
-            return state
+            return state;
     }
-}
+};
