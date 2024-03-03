@@ -53,5 +53,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "^2.2.1",
+    "redux-thunk": "^3.1.0"
   }
 }
