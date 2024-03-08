@@ -1,7 +1,10 @@
 .container {
+
 }
 
 .wrapper {
+    display: flex;
+    gap: 25px;
 }
 
 .number {

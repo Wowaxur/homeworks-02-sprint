@@ -15,9 +15,23 @@ function HW11() {
     const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
 
-    const change = (event: any, value: any) => {
-        // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
-    }
+    const change = (event: Event, newValue: number | number[]) => {
+        if (Array.isArray(newValue)) {
+            // If it's an array, we expect it to have two values.
+            const [newVal1, newVal2] = newValue;
+            // Ensure the first value is not greater than the second value.
+            if (newVal1 <= newVal2) {
+                setValue1(newVal1); // Update the lower bound
+                setValue2(newVal2); // Update the upper bound
+            }
+        } else {
+            // If it's a single number, update only the first value.
+            // Ensure the single slider value does not exceed value2.
+            if (newValue <= value2) {
+                setValue1(newValue);
+            }
+        }
+    };
 
     return (
         <div id={'hw11'}>
@@ -30,7 +44,8 @@ function HW11() {
                         <SuperRange
                             id={'hw11-single-slider'}
                             // сделать так чтоб value1 изменялось // пишет студент
-
+                            value={value1}
+                            onChange={(event, val)=>{change(event,val)}}
                         />
                     </div>
                     <div className={s.wrapper}>
@@ -38,6 +53,8 @@ function HW11() {
                         <SuperRange
                             id={'hw11-double-slider'}
                             // сделать так чтоб value1/2 изменялось // пишет студент
+                            value={[value1, value2]}
+                            onChange={change}
 
                         />
                         <span id={'hw11-value-2'} className={s.number}>{value2}</span>
