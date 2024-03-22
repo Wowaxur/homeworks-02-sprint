@@ -1,7 +1,10 @@
 .buttonsContainer {
+    display: flex;
+    gap: 20px;
 }
 
 .responseContainer {
+    display: flex;
 }
 
 .imageContainer {
@@ -11,12 +14,15 @@
 }
 
 .textContainer{
+    text-align: left;
+    justify-content: center;
 }
 
 .code {
 }
 
 .text {
+
 }
 .info {
 }
