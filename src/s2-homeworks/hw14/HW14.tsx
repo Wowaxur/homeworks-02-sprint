@@ -34,21 +34,28 @@ const HW14 = () => {
         setLoading(true)
         getTechs(value)
             .then((res) => {
-                // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                if (res && res.data) {
+                    setTechs(res.data.techs);
+                    setLoading(false);
+                } else {
+                    console.error('Invalid response format');
+                    setLoading(false);
+                }
             })
+            .catch((error) => {
+                console.error('Error fetching techs:', error);
+                setLoading(false);
+            });
     }
 
     const onChangeText = (value: string) => {
         setFind(value)
         // делает студент
-
+        const params = new URLSearchParams(searchParams);
+        params.set('find', value);
         // добавить/заменить значение в квери урла
         // setSearchParams(
-
+        setSearchParams(params.toString());
         //
     }
 
